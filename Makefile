@@ -4,6 +4,9 @@ BINARY = server/passdown
 # Go build command
 GO_BUILD = go build -o $(BINARY) ./server/src/main
 
+# GitHub repository
+GITHUB_REPO = git@github.com:unitedideas/passdown.git
+
 # Build binary
 build:
 	$(GO_BUILD)
@@ -16,5 +19,10 @@ run: build
 clean:
 	rm -f $(BINARY)
 
-# Clean, build, then run
-all: clean build run
+# Update code from GitHub
+update:
+	git pull origin main
+
+
+# Clean, update from GitHub, build, then run
+all: clean update build run
