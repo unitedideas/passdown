@@ -15,6 +15,13 @@ build:
 run: build
 	$(BINARY)
 
+# Run the frontend
+dev-client:
+	cd client && npm start &
+
+# Run both server and client
+dev: dev-client run
+
 # Clean up build artifacts
 clean:
 	rm -f $(BINARY)
@@ -23,6 +30,5 @@ clean:
 update:
 	git pull origin main
 
-
-# Clean, update from GitHub, build, then run
-all: clean update build run
+# Run both server and client
+all: clean update build dev

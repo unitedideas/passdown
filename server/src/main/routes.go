@@ -31,7 +31,7 @@ func CreateRouter() *httptreemux.TreeMux {
 	router := httptreemux.New()
 
 	router.GET("/", func(w http.ResponseWriter, r *http.Request, params map[string]string) {
-		w.Write([]byte("Hello, world! - Did this change?"))
+		w.Write([]byte("Hello, world!"))
 	})
 
 	// Shift related routes
