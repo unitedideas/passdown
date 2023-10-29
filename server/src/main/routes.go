@@ -2,6 +2,7 @@ package main
 
 import (
 	"net/http"
+	"passdown/server/src/main/db"
 	"passdown/server/src/main/handler"
 
 	"github.com/dimfeld/httptreemux/v5"
@@ -27,7 +28,7 @@ func rateLimit(next http.Handler) http.Handler {
 	})
 }
 
-func CreateRouter() *httptreemux.TreeMux {
+func CreateRouter(db *db.Database) *httptreemux.TreeMux {
 	router := httptreemux.New()
 
 	router.GET("/", func(w http.ResponseWriter, r *http.Request, params map[string]string) {
@@ -36,9 +37,9 @@ func CreateRouter() *httptreemux.TreeMux {
 
 	// Shift related routes
 	router.GET("/api/v1/shifts", func(w http.ResponseWriter, r *http.Request, params map[string]string) {
-		handler.HandleGetShiftsRequest(w, r)
+		handler.HandleGetShiftsRequest(db, w, r)
 	})
-	// Add more routes related to 'shift' here
+	// ... Add more routes related to 'shift' or other functionalities here ...
 
 	// Redirect all other GET requests back to react-router (or a custom 404 handler)
 	router.NotFoundHandler = http.HandlerFunc(handlePageNotFound)

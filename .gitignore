@@ -12,6 +12,14 @@
 *.so
 *.dylib
 *.idea
+*.env
+*.pack
+*.cache
+*.pids
+*.pid
+
+client/node_modules/.cache/default-development/
+/client/node_modules
 
 # Test binary, built with `go test -c`
 *.test
